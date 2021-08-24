@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-/* import loginReducer from './loginReducer'; */
+import musicsReducer from './musicsReducer';
+import favoritesReducer from './favoritesReducer';
 
 const rootReducer = combineReducers({
-  /* loginReducer, */
+  musicsReducer,
+  favoritesReducer,
 });
 
 export default rootReducer;
