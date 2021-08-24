@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import store from './redux';
 import Routes from './routes';
 import Header from './components/molecules/Header';
-import './App.css';
+import GlobalStyle from './styles/global';
 
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <Provider store={ store }>
         <Header />
         <Routes />
