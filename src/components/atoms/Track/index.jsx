@@ -14,7 +14,6 @@ function Track({ track, favoriteFunction, favoriteBtnText }) {
       <button type="button" onClick={ () => window.open(track.link, "_blank") }>Abrir música em nova aba</button>
       <div>
         <button type="button">Play</button>
-        <button type="button">Pause</button>
       </div>
       <button type="button" onClick={ () => favoriteFunction(track) }>{ favoriteBtnText }</button>
     </Container>
