@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux';
 import Routes from './routes';
-import Header from './components/Header/Header';
+import Header from './components/molecules/Header';
 import './App.css';
 
 function App() {

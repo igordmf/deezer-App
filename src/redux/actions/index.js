@@ -1,5 +1,6 @@
-import { BEST_MUSICS, FAVORITES_MUSICS } from './actionTypes';
-import deezerApi from '../../services/deezerApi';
+import { BEST_MUSICS, ADD_TO_FAVORITES, REMOVE_FAVORITE } from './actionTypes';
+ import deezerApi from '../../services/deezerApi'; 
+import { mockedData } from '../../helpers/mockedData';
 
 export const bestMusics = (data) => ({
   type: BEST_MUSICS,
@@ -7,14 +8,19 @@ export const bestMusics = (data) => ({
 })
 
 export function getBestMusics() {
-  return (async (dispatch) => {
-    const { data } = await deezerApi.get('chart/0');
-    console.log(data);
-    dispatch(bestMusics(data));
+  return ((dispatch) => {
+    deezerApi.get('chart/0/tracks')
+      .then(({data}) => dispatch(bestMusics(data)))
+      .catch(() => dispatch(bestMusics(mockedData)));
   })
 }
 
-export const addTofavoritesMusics = (track) => ({
-  type: FAVORITES_MUSICS,
+export const addToFavoritesMusics = (track) => ({
+  type: ADD_TO_FAVORITES,
+  payload: track,
+})
+
+export const removeFromFavorite = (track) => ({
+  type: REMOVE_FAVORITE,
   payload: track,
 })
