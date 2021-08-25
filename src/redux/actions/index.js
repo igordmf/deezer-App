@@ -11,7 +11,7 @@ export const bestMusics = (data) => ({
 
 export function getBestMusics() {
   return ((dispatch) => {
-    deezerApi.get('chart/0/tracks')
+    deezerApi.get('chart/0/tracks?limit=300')
       .then(({data}) => dispatch(bestMusics(data)))
       .catch(() => dispatch(bestMusics(mockedData)));
   })

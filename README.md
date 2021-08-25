@@ -16,7 +16,9 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png" width="20" height="16" /> Redux
 
-<img src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png" width="16" height="16" /> Axios
+<img src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png" width="16" height="16" /> &nbsp;Axios
+
+<img src="https://raw.githubusercontent.com/styled-components/brand/master/styled-components.png" width="16" height="16" /> Styled-components
 
 ## ▶️ Inicializando o projeto
 
