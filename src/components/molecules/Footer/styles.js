@@ -12,5 +12,11 @@ export const Container = styled.div`
 export const Content = styled.div`
   align-items: center;
   display: flex;
+  height: 60px;
   justify-content: center;
+
+  img {
+    border-radius: 10px;
+    height: 55px;
+  }
 `;

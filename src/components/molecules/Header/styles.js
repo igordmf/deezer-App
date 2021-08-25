@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.header`
@@ -37,3 +38,6 @@ export const Content = styled.header`
     };
 `;
 
+export const StyledLink = styled(Link)`
+  border-bottom: ${ (props) => props.$isCurrentPath ? '3px solid black' : ''}
+`

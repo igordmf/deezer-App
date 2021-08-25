@@ -5,7 +5,6 @@ import { Container, Content } from './styles';
 
 function TrackList(props) {
   const { tracks, favoriteFunction, favoriteBtnText } = props;
-  console.log(tracks);
 
   return (
     <Container>

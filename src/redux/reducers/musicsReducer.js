@@ -2,7 +2,7 @@ import { BEST_MUSICS, PLAY_TRACK } from "../actions/actionTypes";
 
 const INITIAL_STATE ={
   tracks: [],
-  playingTrack: {preview: ''},
+  playingTrack: {preview: '', album: { cover: '', title: ''}},
 }
 
 const musicsReducer = (state = INITIAL_STATE, action) => {

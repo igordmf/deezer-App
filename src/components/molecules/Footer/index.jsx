@@ -4,9 +4,12 @@ import { Container, Content } from './styles';
 
 function Footer() {
   const [urlTrack, setUrlTrack] = useState('');
-  const { preview } = useSelector((state) => state.musicsReducer.playingTrack);
+  const { preview, album: { cover, title } } = useSelector((state) => state.musicsReducer.playingTrack);
   const audioRef = useRef();
-  console.log(typeof preview);
+
+  useEffect(() => {
+    audioRef.current.volume = 0.5;
+  }, [])
 
   useEffect(() => {
     const updateTrack = (preview) => {
@@ -17,13 +20,16 @@ function Footer() {
         audioRef.current.play();
       }
     };
-    updateTrack(preview);
+    if(preview) {
+      updateTrack(preview)
+    };
   }, [preview]);
 
   return (
     <Container>
       <Content>
-        <audio controls autoPlay name="media" ref={ audioRef }>
+      <img src={ cover } alt={ title } />
+        <audio controls name="media" ref={ audioRef }>
           <source
             src={ urlTrack }
             type="audio/mpeg"
