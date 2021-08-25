@@ -12,10 +12,10 @@ function TrackList(props) {
       <Content>
         {tracks.map((track) => (
           <Track
-            track={track} 
-            favoriteFunction={favoriteFunction}  
-            favoriteBtnText={favoriteBtnText}
-            key={track.id}
+            track={ track } 
+            favoriteFunction={ favoriteFunction }  
+            favoriteBtnText={ favoriteBtnText }
+            key={ track.id }
           />
         ))}
       </Content>

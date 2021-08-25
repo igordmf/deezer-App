@@ -17,7 +17,7 @@ function Track({ track, favoriteFunction, favoriteBtnText }) {
       <div>
         <button type="button" onClick={ () => dispatch(playTrack(track)) }>Play</button>
       </div>
-      <button type="button" onClick={ () => favoriteFunction(track) }>{ favoriteBtnText }</button>
+      <button type="button" onClick={ () => dispatch(favoriteFunction(track)) }>{ favoriteBtnText }</button>
     </Container>
   );
 }
