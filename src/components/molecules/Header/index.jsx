@@ -12,10 +12,10 @@ function Header() {
           <span>Deezer App</span>
           <img src={logo} alt="Logo" />
         </div>
-        <div>
+        <nav>
           <StyledLink $isCurrentPath={ pathname === '/' } to='/'>Home</StyledLink>
           <StyledLink $isCurrentPath={ pathname === '/musicas' } to='/musicas'>Musicas Favoritas</StyledLink>
-        </div>
+        </nav>
       </Content>
     </Container>
   )

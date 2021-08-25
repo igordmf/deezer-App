@@ -14,7 +14,7 @@ export const Content = styled.header`
   text-align: center;
   width: 100%;
 
-  div {
+  div, nav {
     align-items: center;
     justify-content: center;
     display: flex;
