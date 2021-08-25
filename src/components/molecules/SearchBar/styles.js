@@ -8,6 +8,10 @@ export const StyledSearchBar = styled.div`
   min-width: 340px;
   width: 30%;
 
+  @media(max-width: 320px) {
+    margin-top: 120px;
+  }
+
   &:hover {
     box-shadow: 1px 1px 8px 1px #dcdcdc;
   }
