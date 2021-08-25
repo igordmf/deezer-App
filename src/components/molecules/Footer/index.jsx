@@ -12,12 +12,16 @@ function Footer() {
   }, [])
 
   useEffect(() => {
-    const updateTrack = (preview) => {
+    const updateTrack = async (preview) => {
       setUrlTrack(preview);
       if(audioRef.current) {
         audioRef.current.pause();
         audioRef.current.load();
-        audioRef.current.play();
+        try {
+          await audioRef.current.play();
+        } catch(err) {
+          console.log(err);
+        }
       }
     };
     if(preview) {
