@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import { removeFromFavorite } from '../../redux/actions';
 import TrackList from '../../components/molecules/TrackList';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
+import { Container } from './styles';
 
 function Musics(props) {
   const { favorites, removeFavorite } = props;
 
   return (
-    <div>
+    <Container>
       <TrackList
         tracks={ favorites }
         favoriteFunction={ removeFavorite }
         favoriteBtnText={ favoriteBtnText[1] }
       />
-    </div>
+    </Container>
   )
 }
 
