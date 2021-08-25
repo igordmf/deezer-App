@@ -39,5 +39,5 @@ export const Content = styled.header`
 `;
 
 export const StyledLink = styled(Link)`
-  border-bottom: ${ (props) => props.$isCurrentPath ? '3px solid black' : ''}
+  border-bottom: ${ (props) => props.$isCurrentPath ? '3px solid black' : ''};
 `

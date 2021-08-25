@@ -1,6 +1,6 @@
 import { BEST_MUSICS, ADD_TO_FAVORITES,
   REMOVE_FAVORITE, PLAY_TRACK,
-  LOCAL_STORAGE_TO_FAVORITES } from './actionTypes';
+  LOCAL_STORAGE_TO_FAVORITES, FILTER_TRACKS } from './actionTypes';
 import deezerApi from '../../services/deezerApi'; 
 import { mockedData } from '../../helpers/mockedData';
 
@@ -35,4 +35,9 @@ export const playTrack = (track) => ({
 export const localStorageFavorites = (localStorageFavorites) => ({
   type: LOCAL_STORAGE_TO_FAVORITES,
   payload: localStorageFavorites,
+})
+
+export const filterTracks = (term) => ({
+  type: FILTER_TRACKS,
+  payload: term,
 })

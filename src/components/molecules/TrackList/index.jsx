@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Track from '../../atoms/Track';
 
 import { Container, Content } from './styles';

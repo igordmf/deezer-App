@@ -25,14 +25,14 @@ function Footer() {
       }
     };
     if(preview) {
-      updateTrack(preview)
+      updateTrack(preview);
     };
   }, [preview]);
 
   return (
     <Container>
       <Content>
-      <img src={ cover } alt={ title } />
+        <img src={ cover } alt={ title } />
         <audio controls name="media" ref={ audioRef }>
           <source
             src={ urlTrack }

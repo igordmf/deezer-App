@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { removeFromFavorite } from '../../redux/actions';
 import TrackList from '../../components/molecules/TrackList';
@@ -7,7 +7,7 @@ import removeFromLocalStorage from '../../helpers/localStorageFunctions/removeFr
 import { Container } from './styles';
 
 function Musics() {
-  const favorites = useSelector((state) => state.favoritesReducer.favorites)
+  const favorites = useSelector((state) => state.favoritesReducer.favorites);
 
   return (
     <Container>

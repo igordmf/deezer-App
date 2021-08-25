@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites'));
     if(favorites) {
-      dispatch(localStorageFavorites(favorites))
+      dispatch(localStorageFavorites(favorites));
     }
   }, [dispatch])
 

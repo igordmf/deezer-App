@@ -11,7 +11,6 @@ export const Container = styled.div`
   min-width: 220px;
   padding: 20px;
   
-
   img {
     margin: 0 auto;
     border-radius: 5px;
@@ -34,5 +33,4 @@ export const Container = styled.div`
       background-color: #ddd;
     }
   }
-
 `;
