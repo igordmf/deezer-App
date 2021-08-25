@@ -1,7 +1,7 @@
 import React from 'react'
 import Track from '../../atoms/Track';
 
-import {Container} from './styles';
+import { Container, Content } from './styles';
 
 function TrackList(props) {
   const { tracks, favoriteFunction, favoriteBtnText } = props;
@@ -9,14 +9,16 @@ function TrackList(props) {
 
   return (
     <Container>
-      {tracks.map((track) => (
-        <Track
-          track={track} 
-          favoriteFunction={favoriteFunction}  
-          favoriteBtnText={favoriteBtnText}
-          key={track.id}
-        />
-      ))}
+      <Content>
+        {tracks.map((track) => (
+          <Track
+            track={track} 
+            favoriteFunction={favoriteFunction}  
+            favoriteBtnText={favoriteBtnText}
+            key={track.id}
+          />
+        ))}
+      </Content>
     </Container>
   )
 }

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   background-color: #f0f0f0;
+  box-shadow: 0px 3px 8px #00000029;
+  position: fixed;
   width: 100%;
 `;
 

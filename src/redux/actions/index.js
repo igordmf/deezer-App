@@ -1,4 +1,4 @@
-import { BEST_MUSICS, ADD_TO_FAVORITES, REMOVE_FAVORITE } from './actionTypes';
+import { BEST_MUSICS, ADD_TO_FAVORITES, REMOVE_FAVORITE, PLAY_TRACK } from './actionTypes';
  import deezerApi from '../../services/deezerApi'; 
 import { mockedData } from '../../helpers/mockedData';
 
@@ -22,5 +22,10 @@ export const addToFavoritesMusics = (track) => ({
 
 export const removeFromFavorite = (track) => ({
   type: REMOVE_FAVORITE,
+  payload: track,
+})
+
+export const playTrack = (track) => ({
+  type: PLAY_TRACK,
   payload: track,
 })

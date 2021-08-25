@@ -1,7 +1,8 @@
-import { BEST_MUSICS } from "../actions/actionTypes";
+import { BEST_MUSICS, PLAY_TRACK } from "../actions/actionTypes";
 
 const INITIAL_STATE ={
   tracks: [],
+  playingTrack: {preview: ''},
 }
 
 const musicsReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,11 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         tracks: action.payload,
+      }
+    case PLAY_TRACK:
+      return {
+        ...state,
+        playingTrack: action.payload,
       }
     default:
       return state;

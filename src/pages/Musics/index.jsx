@@ -6,7 +6,6 @@ import favoriteBtnText from '../../helpers/favoriteBtnText';
 
 function Musics(props) {
   const { favorites, removeFavorite } = props;
-  console.log(favorites);
 
   return (
     <div>

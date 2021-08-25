@@ -1,3 +1,4 @@
 export const BEST_MUSICS = 'BEST_MUSICS';
 export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const PLAY_TRACK = 'PLAY_TRACK';

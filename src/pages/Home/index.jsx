@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getBestMusics, addToFavoritesMusics } from '../../redux/actions';
 import TrackList from '../../components/molecules/TrackList';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
+import { Container } from './styles';
 
 function Home(props) {
   const { tracks, getMusics, addTofavorite } = props;
@@ -12,13 +13,13 @@ function Home(props) {
   }, [getMusics])
 
   return (
-    <div>
+    <Container>
       <TrackList
         tracks={ tracks }
         favoriteFunction={ addTofavorite }
         favoriteBtnText={ favoriteBtnText[0] }
         />
-    </div>
+    </Container>
   )
 }
 
