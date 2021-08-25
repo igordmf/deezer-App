@@ -1,5 +1,7 @@
 # Deezer App using React
 
+- Aplicação publicada no [Netlify](https://deezer-app.netlify.app/)
+
 ## 📋 Requisitos
 
 ### O teste consiste em criar um Webapp de listagem e pré-visualização de músicas do app Deezer.
