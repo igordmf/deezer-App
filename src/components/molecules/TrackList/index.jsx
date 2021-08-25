@@ -4,7 +4,7 @@ import Track from '../../atoms/Track';
 import { Container, Content } from './styles';
 
 function TrackList(props) {
-  const { tracks, favoriteFunction, favoriteBtnText } = props;
+  const { tracks, favoriteFunction, favoriteBtnText, localStorageFunction } = props;
 
   return (
     <Container>
@@ -14,6 +14,7 @@ function TrackList(props) {
             track={ track } 
             favoriteFunction={ favoriteFunction }  
             favoriteBtnText={ favoriteBtnText }
+            localStorageFunction= { localStorageFunction }
             key={ track.id }
           />
         ))}

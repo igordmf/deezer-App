@@ -5,8 +5,13 @@ import { playTrack } from '../../../redux/actions';
 import { Container } from './styles';
 import { ImPlay2 } from 'react-icons/im';
 
-function Track({ track, favoriteFunction, favoriteBtnText }) {
+function Track({ track, favoriteFunction, favoriteBtnText, localStorageFunction }) {
   const dispatch = useDispatch();
+
+  function toggleFavorite(selectedTrack) {
+    localStorageFunction(selectedTrack);
+    dispatch(favoriteFunction(selectedTrack));
+  }
 
   return (
     <Container>
@@ -17,7 +22,7 @@ function Track({ track, favoriteFunction, favoriteBtnText }) {
         <span>Duração: { formatDuration(track.duration) }</span>
       </div>
       <button type="button" onClick={ () => dispatch(playTrack(track)) }><ImPlay2 size={30}/></button>
-      <button type="button" onClick={ () => dispatch(favoriteFunction(track)) }>{ favoriteBtnText }</button>
+      <button type="button" onClick={ () => toggleFavorite(track) }>{ favoriteBtnText }</button>
       <button type="button" onClick={ () => window.open(track.link, "_blank") }>Ver no Deezer</button>
     </Container>
   );

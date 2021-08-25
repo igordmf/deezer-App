@@ -1,4 +1,4 @@
-import { ADD_TO_FAVORITES, REMOVE_FAVORITE } from "../actions/actionTypes";
+import { ADD_TO_FAVORITES, REMOVE_FAVORITE, LOCAL_STORAGE_TO_FAVORITES } from "../actions/actionTypes";
 
 const INITIAL_STATE ={
   favorites: [],
@@ -18,6 +18,11 @@ export const favoritesReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         favorites: [...state.favorites.filter((track) => track.id !== action.payload.id)],
+      }
+    case LOCAL_STORAGE_TO_FAVORITES:
+      return {
+        ...state,
+        favorites: [...action.payload],
       }
     default:
       return state;

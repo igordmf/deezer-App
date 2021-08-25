@@ -1,22 +1,28 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './redux';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Routes from './routes';
 import Header from './components/molecules/Header';
 import Footer from './components/molecules/Footer';
+import { localStorageFavorites } from './redux/actions';
 import GlobalStyle from './styles/global';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites'));
+    if(favorites) {
+      dispatch(localStorageFavorites(favorites))
+    }
+  }, [dispatch])
+
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
-      <Provider store={ store }>
-        <Header />
-        <Routes />
-        <Footer />
-      </Provider>
-    </BrowserRouter>
+      <Header />
+      <Routes />
+      <Footer />
+    </>
   );
 }
 

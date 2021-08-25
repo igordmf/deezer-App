@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getBestMusics, addToFavoritesMusics } from '../../redux/actions';
 import TrackList from '../../components/molecules/TrackList';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
+import addToLocalStorage from '../../helpers/localStorageFunctions/addToLocalStorage';
 import { Container } from './styles';
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
         tracks={ tracks }
         favoriteFunction={ addToFavoritesMusics }
         favoriteBtnText={ favoriteBtnText[0] }
+        localStorageFunction={ addToLocalStorage }
       />
     </Container>
   )
