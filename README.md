@@ -2,7 +2,7 @@
 
 ## 📋 Requisitos
 
-### O teste consiste em criar um preview do app Deezer.
+### O teste consiste em criar um Webapp de listagem e pré-visualização de músicas do app Deezer.
 
 ✔️ Criar uma tela de listagem de músicas do momento usando a [API do Deezer](https://developers.deezer.com/api);
 
@@ -12,7 +12,9 @@
 
 ## 🛠 Tecnologias
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="20" height="16" /> React
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" width="20" height="16" /> ReactJS
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png" width="16" height="16" /> Redux
 
 <img src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png" width="16" height="16" /> Axios
 
