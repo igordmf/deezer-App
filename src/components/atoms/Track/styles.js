@@ -12,7 +12,7 @@ export const Container = styled.div`
   padding: 20px;
   
   img {
-    margin: 0 auto;
+    margin: 5px auto;
     border-radius: 5px;
   }
 
@@ -22,7 +22,11 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 3px;
     justify-content: center;
-    margin-top: 5px;
+    margin-top: 10px;
+
+    span {
+      text-align: center;
+    }
   }
 
   button {
