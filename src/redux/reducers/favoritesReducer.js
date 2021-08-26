@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   favorites: [],
 };
 
-export const favoritesReducer = (state = INITIAL_STATE, action) => {
+const favoritesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_TO_FAVORITES:
       if(state.favorites.some((favorite) => favorite.id === action.payload.id)) {

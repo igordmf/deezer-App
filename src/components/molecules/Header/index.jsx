@@ -5,6 +5,7 @@ import logo from '../../../images/deezer-logo.png';
 
 function Header() {
   const { pathname } = useLocation();
+
   return (
     <Container>
       <Content>
@@ -21,4 +22,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Header;

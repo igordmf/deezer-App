@@ -28,9 +28,9 @@ export default createGlobalStyle`
   }
 
   * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
   }
 
   body {
@@ -38,9 +38,9 @@ export default createGlobalStyle`
   }
 
   body, input, textarea, button, select, option {
+    border: 0;
     font-family: 'Open Sans', Arial, sans-serif;
     font-weight: 400;
-    border: 0;
   }
 
   button {

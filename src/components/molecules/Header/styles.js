@@ -16,8 +16,8 @@ export const Content = styled.header`
 
   div, nav {
     align-items: center;
-    justify-content: center;
     display: flex;
+    justify-content: center;
   };
 
   span { 
