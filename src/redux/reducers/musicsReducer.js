@@ -1,4 +1,5 @@
 import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS } from "../actions/actionTypes";
+import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
   tracks: [],
@@ -24,11 +25,11 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         filtredTracks: [...state.tracks.filter((track) => { 
           return (
-          track.title.toLowerCase().includes(action.payload.toLowerCase())
-          ||
-          track.artist.name.toLowerCase().includes(action.payload.toLowerCase())
-          ||
-          track.album.title.toLowerCase().includes(action.payload.toLowerCase())
+            stringCompareWithRegex(track.title, action.payload)
+            ||
+            stringCompareWithRegex(track.artist.name, action.payload)
+            ||
+            stringCompareWithRegex(track.album.title, action.payload)
           )})],
       };
     default:
