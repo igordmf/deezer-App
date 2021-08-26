@@ -22,7 +22,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: 3px;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 5px;
 
     span {
       text-align: center;
