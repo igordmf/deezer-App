@@ -40,4 +40,5 @@ export const Content = styled.header`
 
 export const StyledLink = styled(Link)`
   border-bottom: ${ (props) => props.$isCurrentPath ? '3px solid black' : ''};
+  opacity: ${ (props) => props.$isCurrentPath ? 1 : 0.6};
 `

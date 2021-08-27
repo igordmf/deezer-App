@@ -12,8 +12,8 @@ export const Container = styled.div`
   padding: 20px;
   
   img {
-    margin: 5px auto;
     border-radius: 5px;
+    margin: 5px auto;
   }
 
   div {
