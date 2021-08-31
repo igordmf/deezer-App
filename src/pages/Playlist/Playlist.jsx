@@ -15,8 +15,8 @@ function Playlist() {
   const dispatch = useDispatch();
   const { albumOnPlaylist, playlist } = useSelector((state) => state.musicsReducer);
   const { favoritesAlbums, favoritesMusics} = useSelector((state) => state.favoritesReducer);
-  /* console.log('album em playlist: ', albumOnPlaylist); */
-  /* console.log('tracks em playlist: ', playlist); */
+  console.log('album em playlist: ', albumOnPlaylist);
+  console.log('tracks em playlist: ', playlist);
 
   useEffect(() => {
     if(albumOnPlaylist) {
@@ -32,7 +32,7 @@ function Playlist() {
 
   return (
     <Container>
-      {/* {favoritesAlbums.find((favAlbum) => favAlbum.id === albumOnPlaylist.id)
+      {albumOnPlaylist && (favoritesAlbums.find((favAlbum) => favAlbum.id === albumOnPlaylist.id)
         ?
         <AlbumsList
           albums={ [albumOnPlaylist] } 
@@ -48,9 +48,9 @@ function Playlist() {
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addAlbumsToLocalStorage }
           key={ albumOnPlaylist.id }
-        />
-      } */}
-      {/* {!loading && playlist.map((track) => (
+        />)
+      }
+      {!!playlist.length && (playlist.map((track) => (
         (favoritesMusics.find((musics) => musics.id === track.id))
         ?
         <Track
@@ -67,8 +67,8 @@ function Playlist() {
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addMusicsToLocalStorage }
           key={ track.id }
-        />
-      ))} */}
+        />)
+      ))}
     </Container>
   )
 }

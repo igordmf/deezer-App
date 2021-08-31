@@ -106,6 +106,7 @@ export function getPlaylist(album) {
   const endpoint = `${album.tracklist.replace('https://api.deezer.com/', '')}?limit=${album.nb_tracks}`
   return ((dispatch) => {
     deezerApi.get(endpoint)
+    /* .then(({ data }) => console.log((data.data))) */
     .then(({ data }) => dispatch(albumToPlaylist(data.data)))
     .catch((err) => console.log(err));
   })

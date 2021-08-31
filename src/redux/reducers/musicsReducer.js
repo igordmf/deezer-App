@@ -97,7 +97,9 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
     case ALBUM_TO_PLAYLIST:
       return {
         ...state,
-        playlist: [...action.payload],
+        playlist: [...action.payload.map((track) => (
+          { ...track, album: { cover: state.albumOnPlaylist.cover, title: state.albumOnPlaylist.title } }
+        ))],
       }
     default:
       return state;

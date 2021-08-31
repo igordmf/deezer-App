@@ -19,4 +19,19 @@ export const Content = styled.div`
     border-radius: 10px;
     height: 55px;
   }
+
+  div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    span {
+      bottom: 3.8vh;
+      margin: 0 auto;
+      position: fixed;
+      z-index: 1;
+    }
+  }
+
 `;

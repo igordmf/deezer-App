@@ -55,11 +55,11 @@ function SearchBar() {
       <div>
         <select onChange={ handleChangeOptionSelect }>
           <option value=''></option>
-          <option value='track'>Track</option>
-          <option value='artist'>Artist</option>
-          <option value='album'>Album</option>
+          <option value='track'>Tracks</option>
+          <option value='artist'>Artists</option>
+          <option value='album'>Albums</option>
         </select>
-        {select && <button onClick={ () => getDataBySearch({ select, term }) }>buscar</button>}
+        {select ? <button onClick={ () => getDataBySearch({ select, term }) }>buscar</button> : <div />}
       </div>
     </Container>
   )

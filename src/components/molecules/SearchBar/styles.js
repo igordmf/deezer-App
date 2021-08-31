@@ -12,11 +12,11 @@ export const Container = styled.div`
     margin-top: 120px;
   }
 
-  div {
-    /* background-color: blue; */
+  >div:nth-child(2) {
+    /* background-color: red; */
     display: flex;
     flex-wrap: nowrap;
-    margin: 0 10% 0 0;
+    margin: 0;
 
     select {
       background-color: #f0f0f0;
@@ -29,8 +29,17 @@ export const Container = styled.div`
       option {
         
       }
-  }
-  
+    }
+    
+    button {
+      background-color: green;
+      width: 20px;
+    }
+
+    div {
+      background-color: black;
+      width: 20px;
+    }
   }
 `
 
