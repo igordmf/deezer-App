@@ -4,7 +4,9 @@ import { Container, Content } from './styles';
 
 function Footer() {
   const [urlTrack, setUrlTrack] = useState('');
-  const { title, preview, album: { cover, title: albumTitle }, artist: { name } } = useSelector((state) => state.musicsReducer.playingTrack);
+  const { title, preview, 
+    album: { cover, title: albumTitle }, 
+    artist: { name } } = useSelector((state) => state.musicsReducer.playingTrack);
   const audioRef = useRef();
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function Footer() {
       <Content>
         <img src={ cover } alt={ albumTitle } />
         <div>
-          <span>{title} · {name}</span>
+          <span>{title ? `${title} · ${name}` : ''}</span>
           <audio controls name="media" ref={ audioRef }>
             <source
               src={ urlTrack }

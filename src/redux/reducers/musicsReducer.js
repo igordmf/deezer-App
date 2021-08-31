@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   filtredArtists: [],
   filtredTracks: [],
   nextEndpoint: '',
-  playingTrack: { preview: '', album: { cover: '', title: '' } },
+  playingTrack: { preview: '', album: { cover: '', title: '' }, artist: '' },
   playlist: [],
   tracks: [],
 };

@@ -50,25 +50,29 @@ function Playlist() {
           key={ albumOnPlaylist.id }
         />)
       }
-      {!!playlist.length && (playlist.map((track) => (
-        (favoritesMusics.find((musics) => musics.id === track.id))
-        ?
-        <Track
-          track={ track } 
-          favoriteFunction={ removeFromFavoritesMusics }  
-          favoriteBtnText={ favoriteBtnText[1] }
-          localStorageFunction= { removeMusicFromLocalStorage }
-          key={ track.id }
-        />
-        :
-        <Track
-          track={ track } 
-          favoriteFunction={ addToFavoritesMusics }  
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction= { addMusicsToLocalStorage }
-          key={ track.id }
-        />)
-      ))}
+      {!!playlist.length && (
+        <div>
+          {playlist.map((track) => (
+            (favoritesMusics.find((musics) => musics.id === track.id))
+            ?
+            <Track
+              track={ track } 
+              favoriteFunction={ removeFromFavoritesMusics }  
+              favoriteBtnText={ favoriteBtnText[1] }
+              localStorageFunction= { removeMusicFromLocalStorage }
+              key={ track.id }
+            />
+            :
+            <Track
+              track={ track } 
+              favoriteFunction={ addToFavoritesMusics }  
+              favoriteBtnText={ favoriteBtnText[0] }
+              localStorageFunction= { addMusicsToLocalStorage }
+              key={ track.id }
+            />)
+          )}
+        </div>
+      )}
     </Container>
   )
 }
