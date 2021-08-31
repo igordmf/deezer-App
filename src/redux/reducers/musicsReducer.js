@@ -1,10 +1,12 @@
 import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
   FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
-  FOUND_ARTISTS, FOUND_ALBUMS } from "../actions/actionTypes";
+  FOUND_ARTISTS, FOUND_ALBUMS, ALBUM_TO_PLAYLIST,
+  FETCH_ALBUM_PLAYLIST } from "../actions/actionTypes";
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
   albums: [],
+  albumOnPlaylist: null,
   artists: [],
   dataToDisplay: null,
   filtredAlbums: [],
@@ -12,6 +14,7 @@ const INITIAL_STATE = {
   filtredTracks: [],
   nextEndpoint: '',
   playingTrack: { preview: '', album: { cover: '', title: '' } },
+  playlist: [],
   tracks: [],
 };
 
@@ -85,6 +88,16 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         albums: [...action.payload.data],
         filtredAlbums: [...action.payload.data],
         nextEndpoint: action.payload.next,
+      }
+    case FETCH_ALBUM_PLAYLIST:
+      return {
+        ...state,
+        albumOnPlaylist: { ...action.payload },
+      }
+    case ALBUM_TO_PLAYLIST:
+      return {
+        ...state,
+        playlist: [...action.payload],
       }
     default:
       return state;
