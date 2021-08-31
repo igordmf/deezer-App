@@ -3,7 +3,7 @@ import Track from '../../atoms/Track';
 
 import { Container, Content } from './styles';
 
-function TrackList(props) {
+function TracksList(props) {
   const { tracks, favoriteFunction, favoriteBtnText, localStorageFunction } = props;
 
   return (
@@ -23,4 +23,4 @@ function TrackList(props) {
   )
 }
 
-export default TrackList;
+export default TracksList;
