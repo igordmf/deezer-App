@@ -17,7 +17,7 @@ const favoritesReducer = (state = INITIAL_STATE, action) => {
       }
       return {
         ...state,
-        favoritesMusics: [...state.favorites, action.payload],
+        favoritesMusics: [...state.favoritesMusics, action.payload],
       };
     case REMOVE_FAVORITE_MUSIC:
       return {

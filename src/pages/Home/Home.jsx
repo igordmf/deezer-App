@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBestMusics, addToFavoritesMusics } from '../../redux/actions';
+import { getBestMusics, addToFavoritesMusics, addToFavoritesAlbums, addToFavoritesArtists } from '../../redux/actions';
 import TracksList from '../../components/molecules/TracksList/TracksList';
 import AlbumsList from '../../components/molecules/AlbumsList';
 import ArtistsList from '../../components/molecules/ArtistsList/ArtistsList';
@@ -36,13 +36,13 @@ function Home() {
       />}
       {dataToDisplay === 'albums' && <AlbumsList 
         albums={ albums.length === filtredAlbums ? albums : filtredAlbums }
-        favoriteFunction={ addToFavoritesMusics }
+        favoriteFunction={ addToFavoritesAlbums }
         favoriteBtnText={ favoriteBtnText[0] }
         localStorageFunction={ addAlbumsToLocalStorage }
       />}
       {dataToDisplay === 'artists' && <ArtistsList
         artists={ artists.length === filtredArtists ? artists : filtredArtists }
-        favoriteFunction={ addToFavoritesMusics }
+        favoriteFunction={ addToFavoritesArtists }
         favoriteBtnText={ favoriteBtnText[0] }
         localStorageFunction={ addArtistsToLocalStorage }
       />}

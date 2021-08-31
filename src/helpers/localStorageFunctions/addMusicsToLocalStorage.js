@@ -1,11 +1,11 @@
 function addMusicsToLocalStorage(selectedTrack) {
-  const favorites = JSON.parse(localStorage.getItem('favorites'));
-  if(favorites) {
-    if(favorites.some((favorite) => favorite.id === selectedTrack.id)) return;
-    const newFavorites = [...favorites, selectedTrack];
-    localStorage.setItem('favorites', JSON.stringify(newFavorites));
+  const favoritesMusics = JSON.parse(localStorage.getItem('favoritesMusics'));
+  if(favoritesMusics) {
+    if(favoritesMusics.some((music) => music.id === selectedTrack.id)) return;
+    const newFavorites = [...favoritesMusics, selectedTrack];
+    localStorage.setItem('favoritesMusics', JSON.stringify(newFavorites));
   } else {
-    localStorage.setItem('favorites', JSON.stringify([selectedTrack]));
+    localStorage.setItem('favoritesMusics', JSON.stringify([selectedTrack]));
   }
 }
 

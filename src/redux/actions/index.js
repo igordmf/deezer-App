@@ -5,7 +5,7 @@ import { BEST_MUSICS, ADD_TO_FAVORITES_MUSICS,
   ADD_TO_FAVORITES_ALBUMS, REMOVE_FAVORITE_ALBUM,
   ADD_TO_FAVORITES_ARTISTS, REMOVE_FAVORITE_ARTIST } from './actionTypes';
 import deezerApi from '../../services/deezerApi'; 
-import { mockedData } from '../../helpers/mockedData';
+import { mockedMusicData } from '../../helpers/mockedMusicData';
 
 export const bestMusics = (data) => ({
   type: BEST_MUSICS,
@@ -16,7 +16,7 @@ export function getBestMusics() {
   return ((dispatch) => {
     deezerApi.get('chart/0/tracks?limit=10')
       .then(({ data }) => dispatch(bestMusics(data.data)))
-      .catch(() => dispatch(bestMusics(mockedData)));
+      .catch(() => dispatch(bestMusics(mockedMusicData)));
   })
 }
 
@@ -82,12 +82,11 @@ export const getDataBySelect = ({ data, select }) => ({
 
 export function getDataOnSearch({ select, term }) {
   const endpoint = `search/${select}?q=${term}`;
-  console.log(endpoint);
   return ((dispatch) => {
     deezerApi.get(endpoint)
     .then(( { data }) => dispatch(getDataBySelect({ data, select })))
     .catch((err) => console.log(err));
       /* .then(({ data }) => dispatch(bestMusics(data.data)))
-      .catch(() => dispatch(bestMusics(mockedData))); */
+      .catch(() => dispatch(getDataBySelect({ `mocked${select}Data`, select }))); */
   })
 }

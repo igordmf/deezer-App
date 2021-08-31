@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { removeFromFavoritesMusics } from '../../redux/actions';
 import TracksList from '../../components/molecules/TracksList';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
-import removeFromLocalStorage from '../../helpers/localStorageFunctions/removeFromLocalStorage';
+import { removeMusicFromLocalStorage } from '../../helpers/localStorageFunctions/removeFromLocalStorage';
 import { Container } from './styles';
 
 function Musics() {
@@ -15,7 +15,7 @@ function Musics() {
         tracks={ favoritesMusics }
         favoriteFunction={ removeFromFavoritesMusics }
         favoriteBtnText={ favoriteBtnText[1] }
-        localStorageFunction={ removeFromLocalStorage }
+        localStorageFunction={ removeMusicFromLocalStorage }
       />
     </Container>
   )

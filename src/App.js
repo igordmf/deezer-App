@@ -10,7 +10,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const favoritesMusics = JSON.parse(localStorage.getItem('favorites'));
+    const favoritesMusics = JSON.parse(localStorage.getItem('favoritesMusics'));
     const favoritesAlbums = JSON.parse(localStorage.getItem('favoritesAlbums'));
     const favoritesArtists = JSON.parse(localStorage.getItem('favoritesArtists'));
     if (favoritesMusics) {
