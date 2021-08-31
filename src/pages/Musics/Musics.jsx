@@ -8,6 +8,7 @@ import { Container } from './styles';
 
 function Musics() {
   const favoritesMusics = useSelector((state) => state.favoritesReducer.favoritesMusics);
+  console.log(favoritesMusics);
 
   return (
     <Container>
