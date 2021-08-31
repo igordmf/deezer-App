@@ -1,19 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { removeFromFavorite } from '../../redux/actions';
-import TrackList from '../../components/molecules/TrackList';
+import { removeFromFavoritesMusics } from '../../redux/actions';
+import TracksList from '../../components/molecules/TracksList';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
 import removeFromLocalStorage from '../../helpers/localStorageFunctions/removeFromLocalStorage';
 import { Container } from './styles';
 
 function Musics() {
-  const favorites = useSelector((state) => state.favoritesReducer.favorites);
+  const favoritesMusics = useSelector((state) => state.favoritesReducer.favoritesMusics);
 
   return (
     <Container>
-      <TrackList
-        tracks={ favorites }
-        favoriteFunction={ removeFromFavorite }
+      <TracksList
+        tracks={ favoritesMusics }
+        favoriteFunction={ removeFromFavoritesMusics }
         favoriteBtnText={ favoriteBtnText[1] }
         localStorageFunction={ removeFromLocalStorage }
       />
