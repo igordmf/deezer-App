@@ -15,6 +15,7 @@ function Header() {
         </div>
         <nav>
           <StyledLink $isCurrentPath={ pathname === '/' } to='/'>Home</StyledLink>
+          <StyledLink $isCurrentPath={ pathname === '/playlist' } to='/playlist'>Playlist</StyledLink>
           <StyledLink $isCurrentPath={ pathname === '/musicas' } to='/musicas'>Músicas Favoritas</StyledLink>
           <StyledLink $isCurrentPath={ pathname === '/artistas' } to='/artistas'>Artistas Favoritos</StyledLink>
           <StyledLink $isCurrentPath={ pathname === '/albuns' } to='/albuns'>Álbuns Favoritos</StyledLink>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { filterAlbums, filterArtists, filterTracks, getDataOnSearch } from '../../../redux/actions';
-import { StyledSearchBar } from './styles';
+import { Container, StyledSearchBar } from './styles';
 
 function SearchBar() {
   const [term, setTerm] = useState('');
@@ -21,12 +21,12 @@ function SearchBar() {
         dispatch(filterTracks(term));
         break;
       default:
-        dispatch(filterTracks(term));
+        /* dispatch(filterTracks(term)); */
         break;
     }
   }, [term, search, dispatch])
 
-  const filterByTerm = async ({ target }) => {
+  const filterByTerm = ({ target }) => {
     setTerm(target.value);
   }
 
@@ -43,7 +43,7 @@ function SearchBar() {
   }
 
   return (
-    <>
+    <Container>
       <StyledSearchBar>
         <input
           onChange={ ({ target }) => filterByTerm({ target }) }
@@ -52,14 +52,16 @@ function SearchBar() {
           value= { term }
         />
       </StyledSearchBar>
-      <select onChange={ handleSelect }>
-        <option value=''></option>
-        <option value='track'>Track</option>
-        <option value='artist'>Artist</option>
-        <option value='album'>Album</option>
-      </select>
-      {select && <button onClick={ () => getDataBySearch({ select, term }) }>buscar</button>}
-    </>
+      <div>
+        <select onChange={ handleSelect }>
+          <option value=''></option>
+          <option value='track'>Track</option>
+          <option value='artist'>Artist</option>
+          <option value='album'>Album</option>
+        </select>
+        {select && <button onClick={ () => getDataBySearch({ select, term }) }>buscar</button>}
+      </div>
+    </Container>
   )
 }
 
