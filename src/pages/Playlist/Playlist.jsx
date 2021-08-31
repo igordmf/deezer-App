@@ -15,8 +15,8 @@ function Playlist() {
   const dispatch = useDispatch();
   const { albumOnPlaylist, playlist } = useSelector((state) => state.musicsReducer);
   const { favoritesAlbums, favoritesMusics} = useSelector((state) => state.favoritesReducer);
-  console.log('album em playlist: ', albumOnPlaylist);
-  console.log('tracks em playlist: ', playlist);
+  /* console.log('album em playlist: ', albumOnPlaylist); */
+  /* console.log('tracks em playlist: ', playlist); */
 
   useEffect(() => {
     if(albumOnPlaylist) {
@@ -28,7 +28,7 @@ function Playlist() {
     setLoading(false);
   }, [playlist])
 
-  console.log(loading);
+  /* console.log(loading); */
 
   return (
     <Container>

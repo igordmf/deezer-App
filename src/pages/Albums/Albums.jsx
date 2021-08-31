@@ -8,7 +8,7 @@ import { Container } from './styles';
 
 function Albums() {
   const favoritesAlbums = useSelector((state) => state.favoritesReducer.favoritesAlbums);
-  console.log(favoritesAlbums);
+  /* console.log(favoritesAlbums); */
 
   return (
     <Container>
