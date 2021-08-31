@@ -10,9 +10,17 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites'));
-    if(favorites) {
-      dispatch(localStorageFavorites(favorites));
+    const favoritesMusics = JSON.parse(localStorage.getItem('favorites'));
+    const favoritesAlbums = JSON.parse(localStorage.getItem('favoritesAlbums'));
+    const favoritesArtists = JSON.parse(localStorage.getItem('favoritesArtists'));
+    if (favoritesMusics) {
+      dispatch(localStorageFavorites([favoritesMusics, 'musics']));
+    }
+    if (favoritesAlbums) {
+      dispatch(localStorageFavorites([favoritesAlbums, 'albums']));
+    }
+    if (favoritesArtists) {
+      dispatch(localStorageFavorites([favoritesArtists , 'artists']));
     }
   }, [dispatch])
 

@@ -1,10 +1,18 @@
-import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS } from "../actions/actionTypes";
+import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
+  FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
+  FOUND_ARTISTS, FOUND_ALBUMS } from "../actions/actionTypes";
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
-  tracks: [],
+  albums: [],
+  artists: [],
+  dataToDisplay: null,
+  filtredAlbums: [],
+  filtredArtists: [],
   filtredTracks: [],
+  nextEndpoint: '',
   playingTrack: {preview: '', album: { cover: '', title: ''}},
+  tracks: [],
 };
 
 const musicsReducer = (state = INITIAL_STATE, action) => {
@@ -12,6 +20,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
     case BEST_MUSICS:
       return {
         ...state,
+        dataToDisplay: 'tracks',
         tracks: action.payload,
         filtredTracks: action.payload,
       };
@@ -23,6 +32,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
     case FILTER_TRACKS:
       return {
         ...state,
+        dataToDisplay: 'tracks',
         filtredTracks: [...state.tracks.filter((track) => { 
           return (
             stringCompareWithRegex(track.title, action.payload)
@@ -32,6 +42,50 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
             stringCompareWithRegex(track.album.title, action.payload)
           )})],
       };
+    case FILTER_ALBUMS:
+      return {
+        ...state,
+        dataToDisplay: 'albums',
+        filtredAlbums: [...state.albums.filter((album) => { 
+          return (
+            stringCompareWithRegex(album.title, action.payload)
+            ||
+            stringCompareWithRegex(album.artist.name, action.payload)
+          )})],
+      };
+    case FILTER_ARTISTS:
+      return {
+        ...state,
+        dataToDisplay: 'artists',
+        filtredArtists: [...state.artists.filter((artists) => { 
+          return (
+            stringCompareWithRegex(artists.name, action.payload)
+          )})],
+      };
+    case FOUND_TRACKS:
+      return {
+        ...state,
+        dataToDisplay: 'tracks',
+        filtredTracks: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+        tracks: [...action.payload.data],
+      }
+    case FOUND_ARTISTS:
+      return {
+        ...state,
+        dataToDisplay: 'artists',
+        artists: [...action.payload.data],
+        filtredArtists: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+      }
+    case FOUND_ALBUMS:
+      return {
+        ...state,
+        dataToDisplay: 'albums',
+        albums: [...action.payload.data],
+        filtredAlbums: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+      }
     default:
       return state;
   }
