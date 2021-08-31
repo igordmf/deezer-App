@@ -9,7 +9,6 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
   const history = useHistory();
   const { pathname } = useLocation();
   const albumOnPlaylist = useSelector((state) => state.musicsReducer);
-  /* console.log(album); */
 
   function toggleFavorite(selectedAlbum) {
     localStorageFunction(selectedAlbum);

@@ -35,14 +35,14 @@ export const Container = styled.div`
       background-color: #dcdcdc;
       border: 1px solid #f0f0f0;
       border-radius: 15px;
-      width: 100%;
+      width: 4vw;
     }
 
-    div {
+    >div {
       background-color: #f0f0f0;
       border: 1px solid #f0f0f0;
       border-radius: 15px;
-      width: 100%;
+      width: 4vw;
     }
   }
 `

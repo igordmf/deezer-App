@@ -108,8 +108,8 @@ export function getDataOnSearch({ select, term }) {
     deezerApi.get(endpoint)
     .then(({ data }) => dispatch(getDataBySelect({ data, select })))
     .catch((err) => console.log(err));
-      /* .then(({ data }) => dispatch(bestMusics(data.data)))
-      .catch(() => dispatch(getDataBySelect({ `mocked${select}Data`, select }))); */
+    /* .then(({ data }) => dispatch(bestMusics(data.data)))
+    .catch(() => dispatch(getDataBySelect({ `mocked${select}Data`, select }))); */
   })
 }
 

@@ -48,7 +48,6 @@ function Playlist() {
           favoriteFunction={ removeFromFavoritesAlbums }  
           favoriteBtnText={ favoriteBtnText[1] }
           localStorageFunction= { removeAlbumFromLocalStorage }
-          /* key={ albumOnPlaylist.id } */
         />
         :
         <AlbumsList
@@ -56,17 +55,15 @@ function Playlist() {
           favoriteFunction={ addToFavoritesAlbums }  
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addAlbumsToLocalStorage }
-          /* key={ albumOnPlaylist.id } */
         />)
       }
-      {artistOnPlaylist && (favoritesArtists.find((favArtist) => favArtist.id === artistOnPlaylist.id)
+      {artistOnPlaylist && (loading ? <span>loading</span> : favoritesArtists.find((favArtist) => favArtist.id === artistOnPlaylist.id)
         ?
         <ArtistsList
           artists={ [artistOnPlaylist] }
           favoriteFunction={ removeFromFavoritesArtists }
           favoriteBtnText={ favoriteBtnText[1] }
           localStorageFunction= { removeArtistFromLocalStorage }
-          /* key={ artistOnPlaylist.id } */
         />
         :
         <ArtistsList
@@ -74,7 +71,6 @@ function Playlist() {
           favoriteFunction={ addToFavoritesArtists }
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addArtistsToLocalStorage }
-          /* key={ artistOnPlaylist.id } */
         />
         )
       }
