@@ -1,4 +1,4 @@
-function addToLocalStorage(selectedTrack) {
+function addMusicsToLocalStorage(selectedTrack) {
   const favorites = JSON.parse(localStorage.getItem('favorites'));
   if(favorites) {
     if(favorites.some((favorite) => favorite.id === selectedTrack.id)) return;
@@ -9,4 +9,4 @@ function addToLocalStorage(selectedTrack) {
   }
 }
 
-export default addToLocalStorage;
+export default addMusicsToLocalStorage;
