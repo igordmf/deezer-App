@@ -32,13 +32,17 @@ export const Container = styled.div`
     }
     
     button {
-      background-color: green;
-      width: 20px;
+      background-color: #dcdcdc;
+      border: 1px solid #f0f0f0;
+      border-radius: 15px;
+      width: 100%;
     }
 
     div {
-      background-color: black;
-      width: 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #f0f0f0;
+      border-radius: 15px;
+      width: 100%;
     }
   }
 `

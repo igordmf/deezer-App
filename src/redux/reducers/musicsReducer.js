@@ -1,13 +1,15 @@
 import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
   FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
   FOUND_ARTISTS, FOUND_ALBUMS, ALBUM_TO_PLAYLIST,
-  FETCH_ALBUM_PLAYLIST } from "../actions/actionTypes";
+  FETCH_ALBUM_PLAYLIST, FETCH_ARTIST_PLAYLIST,
+  ARTIST_TO_PLAYLIST } from "../actions/actionTypes";
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
   albums: [],
   albumOnPlaylist: null,
   artists: [],
+  artistOnPlaylist: null,
   dataToDisplay: null,
   filtredAlbums: [],
   filtredArtists: [],
@@ -93,6 +95,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         albumOnPlaylist: { ...action.payload },
+        artistOnPlaylist: null,
       }
     case ALBUM_TO_PLAYLIST:
       return {
@@ -100,6 +103,17 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         playlist: [...action.payload.map((track) => (
           { ...track, album: { cover: state.albumOnPlaylist.cover, title: state.albumOnPlaylist.title } }
         ))],
+      }
+    case FETCH_ARTIST_PLAYLIST:
+      return {
+        ...state,
+        albumOnPlaylist: null,
+        artistOnPlaylist: { ...action.payload },
+      }
+    case ARTIST_TO_PLAYLIST:
+      return {
+        ...state,
+        playlist: [...action.payload],
       }
     default:
       return state;

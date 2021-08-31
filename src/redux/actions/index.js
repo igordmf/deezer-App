@@ -4,7 +4,8 @@ import { BEST_MUSICS, ADD_TO_FAVORITES_MUSICS,
   FILTER_ALBUMS, FILTER_ARTISTS,
   ADD_TO_FAVORITES_ALBUMS, REMOVE_FAVORITE_ALBUM,
   ADD_TO_FAVORITES_ARTISTS, REMOVE_FAVORITE_ARTIST,
-  ALBUM_TO_PLAYLIST, FETCH_ALBUM_PLAYLIST } from './actionTypes';
+  ALBUM_TO_PLAYLIST, FETCH_ALBUM_PLAYLIST,
+  ARTIST_TO_PLAYLIST, FETCH_ARTIST_PLAYLIST } from './actionTypes';
 import deezerApi from '../../services/deezerApi'; 
 import { mockedMusicData } from '../../helpers/mockedMusicData';
 
@@ -81,13 +82,23 @@ export const getDataBySelect = ({ data, select }) => ({
   payload: data,
 })
 
-export const toPlaylist = (album) => ({
+export const toPlaylistAlbum = (album) => ({
   type: FETCH_ALBUM_PLAYLIST,
   payload: album,
 })
 
 export const albumToPlaylist = (data) => ({
   type: ALBUM_TO_PLAYLIST,
+  payload: data,
+})
+
+export const toPlaylistArtist = (artist) => ({
+  type: FETCH_ARTIST_PLAYLIST,
+  payload: artist,
+})
+
+export const artistToPlaylist = (data) => ({
+  type: ARTIST_TO_PLAYLIST,
   payload: data,
 })
 
@@ -102,12 +113,22 @@ export function getDataOnSearch({ select, term }) {
   })
 }
 
-export function getPlaylist(album) {
+export function getAlbumPlaylist(album) {
   const endpoint = `${album.tracklist.replace('https://api.deezer.com/', '')}?limit=${album.nb_tracks}`
   return ((dispatch) => {
     deezerApi.get(endpoint)
     /* .then(({ data }) => console.log((data.data))) */
     .then(({ data }) => dispatch(albumToPlaylist(data.data)))
+    .catch((err) => console.log(err));
+  })
+}
+
+export function getArtistPlaylist(artist) {
+  const endpoint = `${artist.tracklist.replace('https://api.deezer.com/', '')}`
+  return ((dispatch) => {
+    deezerApi.get(endpoint)
+    /* .then(({ data }) => console.log((data.data))) */
+    .then(({ data }) => dispatch(artistToPlaylist(data.data)))
     .catch((err) => console.log(err));
   })
 }

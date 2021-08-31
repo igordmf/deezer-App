@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { toPlaylist, albumToPlaylist } from '../../../redux/actions';
+import { useHistory, useLocation } from 'react-router-dom';
+import { toPlaylistAlbum, albumToPlaylist } from '../../../redux/actions';
 import { Container } from './styles';
 
 function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { pathname } = useLocation();
   const albumOnPlaylist = useSelector((state) => state.musicsReducer);
   /* console.log(album); */
 
@@ -18,7 +19,7 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
   function goToPlaylist(album) {
     if(albumOnPlaylist.id !== album.id) {
       dispatch(albumToPlaylist([]));
-      dispatch(toPlaylist(album));
+      dispatch(toPlaylistAlbum(album));
     }
     history.push('/playlist');
   }
@@ -31,7 +32,7 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
         <span>{ album.artist.name }</span>
         <span>Faixas: { album.nb_tracks }</span>
       </div>
-      <button type="button" onClick={ () => goToPlaylist(album) }>Ver playlist</button>
+      {pathname !== '/playlist' && <button type="button" onClick={ () => goToPlaylist(album) }>Ver playlist</button>}
       <button type="button" onClick={ () => toggleFavorite(album) }>{ favoriteBtnText }</button>
       <button type="button" onClick={ () => window.open(album.link, "_blank") }>Ver no Deezer</button>
     </Container>
