@@ -19,7 +19,9 @@ function Playlist() {
   console.log('tracks em playlist: ', playlist);
 
   useEffect(() => {
-    dispatch(getPlaylist(albumOnPlaylist));
+    if(albumOnPlaylist) {
+      dispatch(getPlaylist(albumOnPlaylist));
+    }
   }, [dispatch, albumOnPlaylist])
 
   useEffect(() => {

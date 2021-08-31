@@ -10,7 +10,7 @@ function SearchBar() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    switch(search) {
+    switch(select) {
       case 'album':
         dispatch(filterAlbums(term));
         break;
@@ -21,16 +21,16 @@ function SearchBar() {
         dispatch(filterTracks(term));
         break;
       default:
-        /* dispatch(filterTracks(term)); */
+        dispatch(filterTracks(term));
         break;
     }
-  }, [term, search, dispatch])
+  }, [term, select, dispatch])
 
   const filterByTerm = ({ target }) => {
     setTerm(target.value);
   }
 
-  const handleSelect = (e) => {
+  const handleChangeOptionSelect = (e) => {
     setSelect(e.target.value);
   }
 
@@ -53,7 +53,7 @@ function SearchBar() {
         />
       </StyledSearchBar>
       <div>
-        <select onChange={ handleSelect }>
+        <select onChange={ handleChangeOptionSelect }>
           <option value=''></option>
           <option value='track'>Track</option>
           <option value='artist'>Artist</option>
