@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { toPlaylist } from '../../../redux/actions';
+import { toPlaylist, albumToPlaylist } from '../../../redux/actions';
 import { Container } from './styles';
 
 function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction }) {
@@ -17,6 +17,7 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
 
   function goToPlaylist(album) {
     if(albumOnPlaylist.id !== album.id) {
+      dispatch(albumToPlaylist([]));
       dispatch(toPlaylist(album));
     }
     history.push('/playlist');
