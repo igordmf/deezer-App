@@ -1,17 +1,25 @@
 import React from 'react';
-/* import formatDuration from '../../../helpers/formatDuration'; */
-import { useDispatch } from 'react-redux';
-/* import { playTrack } from '../../../redux/actions'; */
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { toPlaylist } from '../../../redux/actions';
 import { Container } from './styles';
-/* import { ImPlay2 } from 'react-icons/im'; */
 
 function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const albumOnPlaylist = useSelector((state) => state.musicsReducer);
   /* console.log(album); */
 
   function toggleFavorite(selectedAlbum) {
     localStorageFunction(selectedAlbum);
     dispatch(favoriteFunction(selectedAlbum));
+  }
+
+  function goToPlaylist(album) {
+    if(albumOnPlaylist.id !== album.id) {
+      dispatch(toPlaylist(album));
+    }
+    history.push('/playlist');
   }
 
   return (
@@ -20,9 +28,9 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
       <div>
         <span>{ album.title }</span>
         <span>{ album.artist.name }</span>
-        {/* <span>Duração: { formatDuration(track.duration) }</span> */}
+        <span>Faixas: { album.nb_tracks }</span>
       </div>
-      {/* <button type="button" onClick={ () => dispatch(playTrack(track)) }><ImPlay2 size={30}/></button> */}
+      <button type="button" onClick={ () => goToPlaylist(album) }>Ver playlist</button>
       <button type="button" onClick={ () => toggleFavorite(album) }>{ favoriteBtnText }</button>
       <button type="button" onClick={ () => window.open(album.link, "_blank") }>Ver no Deezer</button>
     </Container>
