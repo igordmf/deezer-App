@@ -1,21 +1,20 @@
 import React from 'react';
-import Track from '../../atoms/Track';
-
+import Album from '../../atoms/Album';
 import { Container, Content } from './styles';
 
-function TrackList(props) {
-  const { tracks, favoriteFunction, favoriteBtnText, localStorageFunction } = props;
+function AlbumsList(props) {
+  const { albums, favoriteFunction, favoriteBtnText, localStorageFunction } = props;
 
   return (
     <Container>
       <Content>
-        {tracks.map((track) => (
-          <Track
-            track={ track } 
+        {albums.map((album) => (
+          <Album
+            album={ album } 
             favoriteFunction={ favoriteFunction }  
             favoriteBtnText={ favoriteBtnText }
             localStorageFunction= { localStorageFunction }
-            key={ track.id }
+            key={ album.id }
           />
         ))}
       </Content>
@@ -23,4 +22,4 @@ function TrackList(props) {
   )
 }
 
-export default TrackList;
+export default AlbumsList;

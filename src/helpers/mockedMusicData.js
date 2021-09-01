@@ -411,7 +411,7 @@
   }
   ] */
 
-  export const mockedData = [{
+  export const mockedMusicData = [{
     "id": 1391349252,
     "title": "Meu Pedaço de Pecado",
     "title_short": "Meu Pedaço de Pecado",

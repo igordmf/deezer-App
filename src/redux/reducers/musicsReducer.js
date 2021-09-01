@@ -1,10 +1,24 @@
-import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS } from "../actions/actionTypes";
+import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
+  FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
+  FOUND_ARTISTS, FOUND_ALBUMS, ALBUM_TO_PLAYLIST,
+  FETCH_ALBUM_PLAYLIST, FETCH_ARTIST_PLAYLIST,
+  ARTIST_TO_PLAYLIST } from "../actions/actionTypes";
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
-  tracks: [],
+  albums: [],
+  albumOnPlaylist: null,
+  artists: [],
+  artistOnPlaylist: null,
+  dataToDisplay: null,
+  filtredAlbums: [],
+  filtredArtists: [],
   filtredTracks: [],
-  playingTrack: {preview: '', album: { cover: '', title: ''}},
+  loading: true,
+  nextEndpoint: '',
+  playingTrack: { preview: '', album: { cover: '', title: '' }, artist: '' },
+  playlist: [],
+  tracks: [],
 };
 
 const musicsReducer = (state = INITIAL_STATE, action) => {
@@ -12,8 +26,10 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
     case BEST_MUSICS:
       return {
         ...state,
+        dataToDisplay: 'tracks',
         tracks: action.payload,
         filtredTracks: action.payload,
+        loading: false,
       };
     case PLAY_TRACK:
       return {
@@ -23,6 +39,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
     case FILTER_TRACKS:
       return {
         ...state,
+        dataToDisplay: 'tracks',
         filtredTracks: [...state.tracks.filter((track) => { 
           return (
             stringCompareWithRegex(track.title, action.payload)
@@ -32,6 +49,81 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
             stringCompareWithRegex(track.album.title, action.payload)
           )})],
       };
+    case FILTER_ALBUMS:
+      return {
+        ...state,
+        dataToDisplay: 'albums',
+        filtredAlbums: [...state.albums.filter((album) => { 
+          return (
+            stringCompareWithRegex(album.title, action.payload)
+            ||
+            stringCompareWithRegex(album.artist.name, action.payload)
+          )})],
+      };
+    case FILTER_ARTISTS:
+      return {
+        ...state,
+        dataToDisplay: 'artists',
+        filtredArtists: [...state.artists.filter((artists) => { 
+          return (
+            stringCompareWithRegex(artists.name, action.payload)
+          )})],
+      };
+    case FOUND_TRACKS:
+      return {
+        ...state,
+        dataToDisplay: 'tracks',
+        filtredTracks: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+        tracks: [...action.payload.data],
+        loading: false,
+      }
+    case FOUND_ARTISTS:
+      return {
+        ...state,
+        dataToDisplay: 'artists',
+        artists: [...action.payload.data],
+        filtredArtists: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+        loading: false,
+      }
+    case FOUND_ALBUMS:
+      return {
+        ...state,
+        dataToDisplay: 'albums',
+        albums: [...action.payload.data],
+        filtredAlbums: [...action.payload.data],
+        nextEndpoint: action.payload.next,
+        loading: false,
+      }
+    case FETCH_ALBUM_PLAYLIST:
+      return {
+        ...state,
+        albumOnPlaylist: { ...action.payload },
+        artistOnPlaylist: null,
+        loading: true,
+      }
+    case ALBUM_TO_PLAYLIST:
+      return {
+        ...state,
+        playlist: [...action.payload.map((track) => (
+          { ...track, album: { cover: state.albumOnPlaylist.cover, title: state.albumOnPlaylist.title } }
+        ))],
+        loading: false,
+      }
+    case FETCH_ARTIST_PLAYLIST:
+      return {
+        ...state,
+        albumOnPlaylist: null,
+        artistOnPlaylist: { ...action.payload },
+        loading: true,
+      }
+    case ARTIST_TO_PLAYLIST:
+      return {
+        ...state,
+        playlist: [...action.payload],
+        loading: false,
+      }
     default:
       return state;
   }
