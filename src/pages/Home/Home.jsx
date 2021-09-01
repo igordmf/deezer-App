@@ -29,7 +29,7 @@ function Home() {
     dispatch(getBestMusics());
   }, [dispatch])
 
-  function colletionToDisplay(dataToDisplay) {
+  function colletionToRender(dataToDisplay) {
     switch(dataToDisplay) {
       case 'albums':
         return (<AlbumsList 
@@ -58,8 +58,17 @@ function Home() {
           favoriteFunction={ addToFavoritesMusics }
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction={ addMusicsToLocalStorage }
-        />);
+        />
+      );
     }
+  }
+
+  function loarderRender() {
+    return (
+      <div className="loaderContainer">
+        {[...Array(8).keys()].map((key) => (<div><CardLoader /></div>))}
+      </div>
+    )
   }
   
   return (
@@ -67,9 +76,9 @@ function Home() {
       <SearchBar />
       {loading
       ?
-        (<div className="loaderContainer">{[...Array(8).keys()].map((key) => (<div><CardLoader /></div>))}</div>)
+        (loarderRender())
         :
-        (colletionToDisplay(dataToDisplay))
+        (colletionToRender(dataToDisplay))
       }
     </Container>
   )

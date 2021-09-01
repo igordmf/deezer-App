@@ -28,8 +28,6 @@ function Artist({ artist, favoriteFunction, favoriteBtnText, localStorageFunctio
       <img src={ artist.picture } alt={`Capa do album: ${ artist.name }`} />
       <div>
         <span>{ artist.name }</span>
-        {/* <span>{ album.artist.name }</span> */}
-        {/* <span>Duração: { formatDuration(track.duration) }</span> */}
       </div>
       {pathname !== '/playlist' && <button type="button" onClick={ () => goToPlaylist(artist) }>Ver playlist</button>}
       <button type="button" onClick={ () => toggleFavorite(artist) }>{ favoriteBtnText }</button>

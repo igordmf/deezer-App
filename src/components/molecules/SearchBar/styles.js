@@ -13,7 +13,6 @@ export const Container = styled.div`
   }
 
   >div:nth-child(2) {
-    /* background-color: red; */
     display: flex;
     flex-wrap: nowrap;
     margin: 0;
@@ -71,8 +70,8 @@ export const StyledSearchBar = styled.div`
   input {
     border: none;
     border-radius: 30px;
-    height: 45px;
     font-size: 16px;
+    height: 45px;
     outline: none;
     text-align: center;
     width: 100%;

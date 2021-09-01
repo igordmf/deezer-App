@@ -42,11 +42,11 @@ export const Content = styled.header`
   }
   
   a {
-      color: black;
-      font-size: 1.5rem;
-      margin: 15px 15px;
-      text-decoration: none;
-    };
+    color: black;
+    font-size: 1.5rem;
+    margin: 15px 15px;
+    text-decoration: none;
+  };
 `;
 
 export const StyledLink = styled(Link)`

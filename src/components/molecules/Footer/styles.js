@@ -37,7 +37,7 @@ export const Content = styled.div`
     /* width: 17%; */
 
     @media(max-width: 400px) {
-        width: 75%;
+      width: 75%;
     }
     
     span {
@@ -58,5 +58,4 @@ export const Content = styled.div`
       }
     }
   }
-
 `;

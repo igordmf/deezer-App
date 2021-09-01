@@ -3,13 +3,11 @@ import ContentLoader from "react-content-loader";
 
 const CardLoader = (props) => (
   <ContentLoader 
-    speed={2}
-    width={220}
-    height={340}
+    speed={ 2 }
+    width={ 220 }
+    height={ 340 }
     viewBox="0 0 220 340"
-    /* backgroundColor="#f6f6f6" */
     backgroundColor="#ecebeb"
-    /* foregroundColor="#ecebeb" */
     foregroundColor="#00000001"
     {...props}
   >

@@ -5,7 +5,8 @@ import { BEST_MUSICS, ADD_TO_FAVORITES_MUSICS,
   ADD_TO_FAVORITES_ALBUMS, REMOVE_FAVORITE_ALBUM,
   ADD_TO_FAVORITES_ARTISTS, REMOVE_FAVORITE_ARTIST,
   ALBUM_TO_PLAYLIST, FETCH_ALBUM_PLAYLIST,
-  ARTIST_TO_PLAYLIST, FETCH_ARTIST_PLAYLIST } from './actionTypes';
+  ARTIST_TO_PLAYLIST, FETCH_ARTIST_PLAYLIST,
+  LOADING_TO_FALSE } from './actionTypes';
 import deezerApi from '../../services/deezerApi'; 
 import { mockedMusicData } from '../../helpers/mockedMusicData';
 
@@ -100,6 +101,10 @@ export const toPlaylistArtist = (artist) => ({
 export const artistToPlaylist = (data) => ({
   type: ARTIST_TO_PLAYLIST,
   payload: data,
+})
+
+export const loadingToFalse = () => ({
+  type: LOADING_TO_FALSE,
 })
 
 export function getDataOnSearch({ select, term }) {

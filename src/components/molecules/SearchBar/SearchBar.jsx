@@ -6,7 +6,6 @@ import { Container, StyledSearchBar } from './styles';
 function SearchBar() {
   const [term, setTerm] = useState('');
   const [select, setSelect] = useState('');
-  /* const [search, setSearch] = useState(false); */
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,7 +37,6 @@ function SearchBar() {
     if(term) {
       dispatch(getDataOnSearch({ select, term }));
       setTerm('');
-      /* setSearch(true); */
     }
   }
 

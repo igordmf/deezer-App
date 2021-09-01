@@ -2,7 +2,7 @@ import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
   FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
   FOUND_ARTISTS, FOUND_ALBUMS, ALBUM_TO_PLAYLIST,
   FETCH_ALBUM_PLAYLIST, FETCH_ARTIST_PLAYLIST,
-  ARTIST_TO_PLAYLIST } from "../actions/actionTypes";
+  ARTIST_TO_PLAYLIST, LOADING_TO_FALSE } from "../actions/actionTypes";
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
@@ -122,6 +122,11 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         playlist: [...action.payload],
+        loading: false,
+      }
+    case LOADING_TO_FALSE:
+      return {
+        ...state,
         loading: false,
       }
     default:

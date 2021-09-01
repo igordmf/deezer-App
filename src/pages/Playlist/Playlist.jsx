@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAlbumPlaylist, getArtistPlaylist,
   addToFavoritesAlbums, removeFromFavoritesAlbums,
   addToFavoritesArtists, removeFromFavoritesArtists,
-  addToFavoritesMusics, removeFromFavoritesMusics } from '../../redux/actions';
+  addToFavoritesMusics, removeFromFavoritesMusics,
+  loadingToFalse } from '../../redux/actions';
 import AlbumsList from '../../components/molecules/AlbumsList';
 import ArtistsList from '../../components/molecules/ArtistsList';
 import Track from '../../components/atoms/Track';
 import favoriteBtnText from '../../helpers/favoriteBtnText';
-import { removeAlbumFromLocalStorage, removeArtistFromLocalStorage,
+import { removeAlbumFromLocalStorage,removeArtistFromLocalStorage,
   removeMusicFromLocalStorage } from '../../helpers/localStorageFunctions/removeFromLocalStorage';
 import addMusicsToLocalStorage from '../../helpers/localStorageFunctions/addMusicsToLocalStorage';
 import addAlbumsToLocalStorage from '../../helpers/localStorageFunctions/addAlbumsToLocalStorage';
 import addArtistsToLocalStorage from '../../helpers/localStorageFunctions/addArtistsToLocalStorage';
 import { Container } from './styles';
+import CardLoader from '../../components/atoms/CardLoader/CardLoader';
 
 function Playlist() {
-  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const { albumOnPlaylist, artistOnPlaylist, playlist } = useSelector((state) => state.musicsReducer);
-  const { favoritesAlbums, favoritesArtists, favoritesMusics} = useSelector((state) => state.favoritesReducer);
+  const {
+    albumOnPlaylist,
+    artistOnPlaylist,
+    loading,
+    playlist,
+  } = useSelector((state) => state.musicsReducer);
+  const {
+    favoritesAlbums,
+    favoritesArtists,
+    favoritesMusics
+  } = useSelector((state) => state.favoritesReducer);
 
   useEffect(() => {
     if(albumOnPlaylist) {
@@ -34,14 +44,17 @@ function Playlist() {
   }, [dispatch, artistOnPlaylist])
 
   useEffect(() => {
-    setLoading(false);
-  }, [playlist])
+    if(!albumOnPlaylist && !artistOnPlaylist) {
+      dispatch(loadingToFalse());
+    }
+  }, [dispatch, albumOnPlaylist, artistOnPlaylist])
 
   /* console.log(loading); */
 
-  return (
-    <Container>
-      {albumOnPlaylist && (favoritesAlbums.find((favAlbum) => favAlbum.id === albumOnPlaylist.id)
+  function renderAlbum() {
+    if(albumOnPlaylist) {
+      return (
+        favoritesAlbums.find((favAlbum) => favAlbum.id === albumOnPlaylist.id)
         ?
         <AlbumsList
           albums={ [albumOnPlaylist] } 
@@ -55,9 +68,15 @@ function Playlist() {
           favoriteFunction={ addToFavoritesAlbums }  
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addAlbumsToLocalStorage }
-        />)
-      }
-      {artistOnPlaylist && (loading ? <span>loading</span> : favoritesArtists.find((favArtist) => favArtist.id === artistOnPlaylist.id)
+        />
+      )
+    }
+  }
+
+  function renderArtist() {
+    if(artistOnPlaylist) {
+      return (
+        favoritesArtists.find((favArtist) => favArtist.id === artistOnPlaylist.id)
         ?
         <ArtistsList
           artists={ [artistOnPlaylist] }
@@ -72,9 +91,13 @@ function Playlist() {
           favoriteBtnText={ favoriteBtnText[0] }
           localStorageFunction= { addArtistsToLocalStorage }
         />
-        )
-      }
-      {!!playlist.length && (
+      )
+    }
+  }
+
+  function renderPlaylist() {
+    if(!!playlist.length) {
+      return (
         <div>
           {playlist.map((track) => (
             (favoritesMusics.find((musics) => musics.id === track.id))
@@ -96,7 +119,23 @@ function Playlist() {
             />)
           )}
         </div>
-      )}
+      )
+    }
+  }
+
+  function loarderRender() {
+    return (
+      <div className="loaderContainer">
+        {[...Array(8).keys()].map((key) => (<div><CardLoader /></div>))}
+      </div>
+    )
+  }
+
+  return (
+    <Container>
+      {renderAlbum()}
+      {renderArtist()}
+      {loading ? loarderRender() : renderPlaylist()}
     </Container>
   )
 }
