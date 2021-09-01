@@ -9,6 +9,9 @@ export const Container = styled.header`
 `;
 
 export const Content = styled.header`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin: auto;
   max-width: 1200px;
   text-align: center;
@@ -19,6 +22,14 @@ export const Content = styled.header`
     display: flex;
     justify-content: center;
   };
+
+  nav {
+    width: 100%;
+
+    @media(max-width: 600px) {
+      overflow-x: scroll;
+    }
+  }
 
   span { 
     font-size: 3rem;

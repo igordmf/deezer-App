@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   filtredAlbums: [],
   filtredArtists: [],
   filtredTracks: [],
+  loading: true,
   nextEndpoint: '',
   playingTrack: { preview: '', album: { cover: '', title: '' }, artist: '' },
   playlist: [],
@@ -28,6 +29,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         dataToDisplay: 'tracks',
         tracks: action.payload,
         filtredTracks: action.payload,
+        loading: false,
       };
     case PLAY_TRACK:
       return {
@@ -74,6 +76,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         filtredTracks: [...action.payload.data],
         nextEndpoint: action.payload.next,
         tracks: [...action.payload.data],
+        loading: false,
       }
     case FOUND_ARTISTS:
       return {
@@ -82,6 +85,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         artists: [...action.payload.data],
         filtredArtists: [...action.payload.data],
         nextEndpoint: action.payload.next,
+        loading: false,
       }
     case FOUND_ALBUMS:
       return {
@@ -90,12 +94,14 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         albums: [...action.payload.data],
         filtredAlbums: [...action.payload.data],
         nextEndpoint: action.payload.next,
+        loading: false,
       }
     case FETCH_ALBUM_PLAYLIST:
       return {
         ...state,
         albumOnPlaylist: { ...action.payload },
         artistOnPlaylist: null,
+        loading: true,
       }
     case ALBUM_TO_PLAYLIST:
       return {
@@ -103,17 +109,20 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         playlist: [...action.payload.map((track) => (
           { ...track, album: { cover: state.albumOnPlaylist.cover, title: state.albumOnPlaylist.title } }
         ))],
+        loading: false,
       }
     case FETCH_ARTIST_PLAYLIST:
       return {
         ...state,
         albumOnPlaylist: null,
         artistOnPlaylist: { ...action.payload },
+        loading: true,
       }
     case ARTIST_TO_PLAYLIST:
       return {
         ...state,
         playlist: [...action.payload],
+        loading: false,
       }
     default:
       return state;
