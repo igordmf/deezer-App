@@ -24,7 +24,7 @@ function Home() {
     filtredTracks,
     loading
   } = useSelector((state) => state.musicsReducer);
-
+  
   useEffect(() => {
     dispatch(getBestMusics());
   }, [dispatch])

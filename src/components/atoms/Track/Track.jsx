@@ -19,6 +19,7 @@ function Track({ track, favoriteFunction, favoriteBtnText, localStorageFunction 
       <div>
         <span>{ track.title }</span>
         <span>{ track.artist.name }</span>
+        <span>{ track.album.title }</span>
         <span>Duração: { formatDuration(track.duration) }</span>
       </div>
       <button type="button" onClick={ () => dispatch(playTrack(track)) }><ImPlay2 size={30}/></button>

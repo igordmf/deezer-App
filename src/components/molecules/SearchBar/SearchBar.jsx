@@ -36,7 +36,7 @@ function SearchBar() {
   const getDataBySearch = ({ select, term }) => {
     if(term) {
       dispatch(getDataOnSearch({ select, term }));
-      setTerm('');
+      /* setTerm(''); */
     }
   }
 
