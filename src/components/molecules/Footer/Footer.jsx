@@ -13,7 +13,7 @@ function Footer() {
   const audioRef = useRef();
 
   useEffect(() => {
-    audioRef.current.volume = 0.4;
+    audioRef.current.volume = 0.3;
   }, [])
 
   useEffect(() => {
