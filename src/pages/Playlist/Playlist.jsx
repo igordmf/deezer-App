@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAlbumPlaylist, getArtistPlaylist,
-  addToFavoritesAlbums, removeFromFavoritesAlbums,
-  addToFavoritesArtists, removeFromFavoritesArtists,
-  addToFavoritesMusics, removeFromFavoritesMusics,
-  loadingToFalse } from '../../redux/actions';
+import { ACTIONS } from '../../redux/actions';
 import AlbumsList from '../../components/molecules/AlbumsList';
 import ArtistsList from '../../components/molecules/ArtistsList';
 import Track from '../../components/atoms/Track';
-import favoriteBtnText from '../../helpers/favoriteBtnText';
-import { removeAlbumFromLocalStorage,removeArtistFromLocalStorage,
-  removeMusicFromLocalStorage } from '../../helpers/localStorageFunctions/removeFromLocalStorage';
-import addMusicsToLocalStorage from '../../helpers/localStorageFunctions/addMusicsToLocalStorage';
-import addAlbumsToLocalStorage from '../../helpers/localStorageFunctions/addAlbumsToLocalStorage';
-import addArtistsToLocalStorage from '../../helpers/localStorageFunctions/addArtistsToLocalStorage';
+import CardLoader from '../../components/atoms/CardLoader';
+import { favoriteBtnText } from '../../helpers/favoriteBtnText';
+import { localStorageFunctions } from '../../helpers/localStorageFunctions';
 import { Container } from './styles';
-import CardLoader from '../../components/atoms/CardLoader/CardLoader';
 
 function Playlist() {
   const dispatch = useDispatch();
@@ -33,19 +25,19 @@ function Playlist() {
 
   useEffect(() => {
     if(albumOnPlaylist) {
-      dispatch(getAlbumPlaylist(albumOnPlaylist));
+      dispatch(ACTIONS.getAlbumPlaylist(albumOnPlaylist));
     }
   }, [dispatch, albumOnPlaylist])
 
   useEffect(() => {
     if(artistOnPlaylist) {
-      dispatch(getArtistPlaylist(artistOnPlaylist));
+      dispatch(ACTIONS.getArtistPlaylist(artistOnPlaylist));
     }
   }, [dispatch, artistOnPlaylist])
 
   useEffect(() => {
     if(!albumOnPlaylist && !artistOnPlaylist) {
-      dispatch(loadingToFalse());
+      dispatch(ACTIONS.loadingToFalse());
     }
   }, [dispatch, albumOnPlaylist, artistOnPlaylist])
 
@@ -58,16 +50,16 @@ function Playlist() {
         ?
         <AlbumsList
           albums={ [albumOnPlaylist] } 
-          favoriteFunction={ removeFromFavoritesAlbums }  
-          favoriteBtnText={ favoriteBtnText[1] }
-          localStorageFunction= { removeAlbumFromLocalStorage }
+          favoriteFunction={ ACTIONS.removeFromFavoritesAlbums }  
+          favoriteBtnText={ favoriteBtnText.REMOVE_FROM_FAVORITES }
+          localStorageFunction= { localStorageFunctions.removeAlbumFromLocalStorage }
         />
         :
         <AlbumsList
           albums={ [albumOnPlaylist] } 
-          favoriteFunction={ addToFavoritesAlbums }  
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction= { addAlbumsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesAlbums }  
+          favoriteBtnText={ favoriteBtnText.REMOVE_FROM_FAVORITES }
+          localStorageFunction= { localStorageFunctions.addAlbumsToLocalStorage }
         />
       )
     }
@@ -80,16 +72,16 @@ function Playlist() {
         ?
         <ArtistsList
           artists={ [artistOnPlaylist] }
-          favoriteFunction={ removeFromFavoritesArtists }
-          favoriteBtnText={ favoriteBtnText[1] }
-          localStorageFunction= { removeArtistFromLocalStorage }
+          favoriteFunction={ ACTIONS.removeFromFavoritesArtists }
+          favoriteBtnText={ favoriteBtnText.REMOVE_FROM_FAVORITES }
+          localStorageFunction= { localStorageFunctions.removeArtistFromLocalStorage }
         />
         :
         <ArtistsList
           artists={ [artistOnPlaylist] }
-          favoriteFunction={ addToFavoritesArtists }
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction= { addArtistsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesArtists }
+          favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+          localStorageFunction= { localStorageFunctions.addArtistsToLocalStorage }
         />
       )
     }
@@ -104,17 +96,17 @@ function Playlist() {
             ?
             <Track
               track={ track } 
-              favoriteFunction={ removeFromFavoritesMusics }  
-              favoriteBtnText={ favoriteBtnText[1] }
-              localStorageFunction= { removeMusicFromLocalStorage }
+              favoriteFunction={ ACTIONS.removeFromFavoritesMusics }  
+              favoriteBtnText={ favoriteBtnText.REMOVE_FROM_FAVORITES }
+              localStorageFunction= { localStorageFunctions.removeMusicFromLocalStorage }
               key={ track.id }
             />
             :
             <Track
               track={ track } 
-              favoriteFunction={ addToFavoritesMusics }  
-              favoriteBtnText={ favoriteBtnText[0] }
-              localStorageFunction= { addMusicsToLocalStorage }
+              favoriteFunction={ ACTIONS.addToFavoritesMusics }  
+              favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+              localStorageFunction= { localStorageFunctions.addMusicsToLocalStorage }
               key={ track.id }
             />)
           )}
@@ -126,7 +118,7 @@ function Playlist() {
   function loarderRender() {
     return (
       <div className="loaderContainer">
-        {[...Array(8).keys()].map((key) => (<div><CardLoader /></div>))}
+        {[...Array(8).keys()].map((key) => (<div key={ key }><CardLoader /></div>))}
       </div>
     )
   }

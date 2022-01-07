@@ -1,8 +1,4 @@
-import { BEST_MUSICS, PLAY_TRACK, FILTER_TRACKS,
-  FILTER_ALBUMS, FILTER_ARTISTS, FOUND_TRACKS,
-  FOUND_ARTISTS, FOUND_ALBUMS, ALBUM_TO_PLAYLIST,
-  FETCH_ALBUM_PLAYLIST, FETCH_ARTIST_PLAYLIST,
-  ARTIST_TO_PLAYLIST, LOADING_TO_FALSE } from "../actions/actionTypes";
+import { ACTION_TYPES } from '../actions/actionTypes';
 import stringCompareWithRegex from '../../helpers/stringCompareWithRegex';
 
 const INITIAL_STATE = {
@@ -23,7 +19,7 @@ const INITIAL_STATE = {
 
 const musicsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case BEST_MUSICS:
+    case ACTION_TYPES.BEST_MUSICS:
       return {
         ...state,
         dataToDisplay: 'tracks',
@@ -31,12 +27,12 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         filtredTracks: action.payload,
         loading: false,
       };
-    case PLAY_TRACK:
+    case ACTION_TYPES.PLAY_TRACK:
       return {
         ...state,
         playingTrack: action.payload,
       };
-    case FILTER_TRACKS:
+    case ACTION_TYPES.FILTER_TRACKS:
       return {
         ...state,
         dataToDisplay: 'tracks',
@@ -49,7 +45,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
             stringCompareWithRegex(track.album.title, action.payload)
           )})],
       };
-    case FILTER_ALBUMS:
+    case ACTION_TYPES.FILTER_ALBUMS:
       return {
         ...state,
         dataToDisplay: 'albums',
@@ -60,7 +56,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
             stringCompareWithRegex(album.artist.name, action.payload)
           )})],
       };
-    case FILTER_ARTISTS:
+    case ACTION_TYPES.FILTER_ARTISTS:
       return {
         ...state,
         dataToDisplay: 'artists',
@@ -69,7 +65,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
             stringCompareWithRegex(artists.name, action.payload)
           )})],
       };
-    case FOUND_TRACKS:
+    case ACTION_TYPES.FOUND_TRACKS:
       return {
         ...state,
         dataToDisplay: 'tracks',
@@ -78,7 +74,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         tracks: [...action.payload.data],
         loading: false,
       }
-    case FOUND_ARTISTS:
+    case ACTION_TYPES.FOUND_ARTISTS:
       return {
         ...state,
         dataToDisplay: 'artists',
@@ -87,7 +83,7 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         nextEndpoint: action.payload.next,
         loading: false,
       }
-    case FOUND_ALBUMS:
+    case ACTION_TYPES.FOUND_ALBUMS:
       return {
         ...state,
         dataToDisplay: 'albums',
@@ -96,14 +92,14 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         nextEndpoint: action.payload.next,
         loading: false,
       }
-    case FETCH_ALBUM_PLAYLIST:
+    case ACTION_TYPES.FETCH_ALBUM_PLAYLIST:
       return {
         ...state,
         albumOnPlaylist: { ...action.payload },
         artistOnPlaylist: null,
         loading: true,
       }
-    case ALBUM_TO_PLAYLIST:
+    case ACTION_TYPES.ALBUM_TO_PLAYLIST:
       return {
         ...state,
         playlist: [...action.payload.map((track) => (
@@ -111,20 +107,20 @@ const musicsReducer = (state = INITIAL_STATE, action) => {
         ))],
         loading: false,
       }
-    case FETCH_ARTIST_PLAYLIST:
+    case ACTION_TYPES.FETCH_ARTIST_PLAYLIST:
       return {
         ...state,
         albumOnPlaylist: null,
         artistOnPlaylist: { ...action.payload },
         loading: true,
       }
-    case ARTIST_TO_PLAYLIST:
+    case ACTION_TYPES.ARTIST_TO_PLAYLIST:
       return {
         ...state,
         playlist: [...action.payload],
         loading: false,
       }
-    case LOADING_TO_FALSE:
+    case ACTION_TYPES.LOADING_TO_FALSE:
       return {
         ...state,
         loading: false,

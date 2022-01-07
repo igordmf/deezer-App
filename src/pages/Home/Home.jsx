@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getBestMusics, addToFavoritesMusics, addToFavoritesAlbums, addToFavoritesArtists } from '../../redux/actions';
-import TracksList from '../../components/molecules/TracksList/TracksList';
+import { ACTIONS } from '../../redux/actions';
+import TracksList from '../../components/molecules/TracksList';
 import AlbumsList from '../../components/molecules/AlbumsList';
-import ArtistsList from '../../components/molecules/ArtistsList/ArtistsList';
-import favoriteBtnText from '../../helpers/favoriteBtnText';
-import addMusicsToLocalStorage from '../../helpers/localStorageFunctions/addMusicsToLocalStorage';
-import addAlbumsToLocalStorage from '../../helpers/localStorageFunctions/addAlbumsToLocalStorage';
-import addArtistsToLocalStorage from '../../helpers/localStorageFunctions/addArtistsToLocalStorage';
+import ArtistsList from '../../components/molecules/ArtistsList';
+import SearchBar from '../../components/molecules/SearchBar';
+import CardLoader from '../../components/atoms/CardLoader';
+import { favoriteBtnText } from '../../helpers/favoriteBtnText';
+import { localStorageFunctions } from '../../helpers/localStorageFunctions';
 import { Container } from './styles';
-import SearchBar from '../../components/molecules/SearchBar/SearchBar';
-import CardLoader from '../../components/atoms/CardLoader/CardLoader';
 
 function Home() {
   const dispatch = useDispatch();
@@ -26,7 +24,7 @@ function Home() {
   } = useSelector((state) => state.musicsReducer);
   
   useEffect(() => {
-    dispatch(getBestMusics());
+    dispatch(ACTIONS.getBestMusics());
   }, [dispatch])
 
   function colletionToRender(dataToDisplay) {
@@ -34,30 +32,30 @@ function Home() {
       case 'albums':
         return (<AlbumsList 
           albums={ albums.length === filtredAlbums ? albums : filtredAlbums }
-          favoriteFunction={ addToFavoritesAlbums }
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction={ addAlbumsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesAlbums }
+          favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+          localStorageFunction={ localStorageFunctions.addAlbumsToLocalStorage }
         />);
       case 'artists':
         return (<ArtistsList
           artists={ artists.length === filtredArtists ? artists : filtredArtists }
-          favoriteFunction={ addToFavoritesArtists }
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction={ addArtistsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesArtists }
+          favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+          localStorageFunction={ localStorageFunctions.addArtistsToLocalStorage }
         />);
       case 'tracks':
         return (<TracksList
           tracks={ tracks.length === filtredTracks.length ? tracks : filtredTracks }
-          favoriteFunction={ addToFavoritesMusics }
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction={ addMusicsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesMusics }
+          favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+          localStorageFunction={ localStorageFunctions.addMusicsToLocalStorage }
         />);
       default:
         return (<TracksList
           tracks={ tracks.length === filtredTracks.length ? tracks : filtredTracks }
-          favoriteFunction={ addToFavoritesMusics }
-          favoriteBtnText={ favoriteBtnText[0] }
-          localStorageFunction={ addMusicsToLocalStorage }
+          favoriteFunction={ ACTIONS.addToFavoritesMusics }
+          favoriteBtnText={ favoriteBtnText.ADD_TO_FAVORITES }
+          localStorageFunction={ localStorageFunctions.addMusicsToLocalStorage }
         />
       );
     }
@@ -66,7 +64,7 @@ function Home() {
   function loarderRender() {
     return (
       <div className="loaderContainer">
-        {[...Array(8).keys()].map((key) => (<div><CardLoader /></div>))}
+        {[...Array(8).keys()].map((key) => (<div key={ key }><CardLoader /></div>))}
       </div>
     )
   }

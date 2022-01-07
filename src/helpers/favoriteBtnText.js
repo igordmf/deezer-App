@@ -1,3 +1,4 @@
-const favoriteBtnText = ['Adicionar aos favoritos', 'Remover dos favoritos'];
-
-export default favoriteBtnText;
+export const favoriteBtnText = {
+  ADD_TO_FAVORITES: 'Adicionar aos favoritos',
+  REMOVE_FROM_FAVORITES: 'Remover dos favoritos'
+}

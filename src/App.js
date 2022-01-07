@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Routes from './routes';
 import Header from './components/molecules/Header';
 import Footer from './components/molecules/Footer';
-import { localStorageFavorites } from './redux/actions';
+import { ACTIONS } from './redux/actions';
 import GlobalStyle from './styles/global';
 
 function App() {
@@ -14,13 +14,13 @@ function App() {
     const favoritesAlbums = JSON.parse(localStorage.getItem('favoritesAlbums'));
     const favoritesArtists = JSON.parse(localStorage.getItem('favoritesArtists'));
     if (favoritesMusics) {
-      dispatch(localStorageFavorites([favoritesMusics, 'musics']));
+      dispatch(ACTIONS.localStorageFavorites([favoritesMusics, 'musics']));
     }
     if (favoritesAlbums) {
-      dispatch(localStorageFavorites([favoritesAlbums, 'albums']));
+      dispatch(ACTIONS.localStorageFavorites([favoritesAlbums, 'albums']));
     }
     if (favoritesArtists) {
-      dispatch(localStorageFavorites([favoritesArtists , 'artists']));
+      dispatch(ACTIONS.localStorageFavorites([favoritesArtists , 'artists']));
     }
   }, [dispatch])
 

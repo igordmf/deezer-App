@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { toPlaylistArtist, artistToPlaylist } from '../../../redux/actions';
+import { ACTIONS } from '../../../redux/actions';
 import { Container } from './styles';
 
 function Artist({ artist, favoriteFunction, favoriteBtnText, localStorageFunction }) {
@@ -17,8 +17,8 @@ function Artist({ artist, favoriteFunction, favoriteBtnText, localStorageFunctio
 
   function goToPlaylist(artist) {
     if(artistOnPlaylist.id !== artist.id) {
-      dispatch(artistToPlaylist([]));
-      dispatch(toPlaylistArtist(artist));
+      dispatch(ACTIONS.artistToPlaylist([]));
+      dispatch(ACTIONS.toPlaylistArtist(artist));
     }
     history.push('/playlist');
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { toPlaylistAlbum, albumToPlaylist } from '../../../redux/actions';
+import { ACTIONS } from '../../../redux/actions';
 import { Container } from './styles';
 
 function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction }) {
@@ -17,8 +17,8 @@ function Album({ album, favoriteFunction, favoriteBtnText, localStorageFunction 
 
   function goToPlaylist(album) {
     if(albumOnPlaylist.id !== album.id) {
-      dispatch(albumToPlaylist([]));
-      dispatch(toPlaylistAlbum(album));
+      dispatch(ACTIONS.albumToPlaylist([]));
+      dispatch(ACTIONS.toPlaylistAlbum(album));
     }
     history.push('/playlist');
   }

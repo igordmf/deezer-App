@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { filterAlbums, filterArtists, filterTracks, getDataOnSearch } from '../../../redux/actions';
+import { ACTIONS } from '../../../redux/actions';
 import { Container, StyledSearchBar } from './styles';
 
 function SearchBar() {
@@ -11,16 +11,16 @@ function SearchBar() {
   useEffect(() => {
     switch(select) {
       case 'album':
-        dispatch(filterAlbums(term));
+        dispatch(ACTIONS.filterAlbums(term));
         break;
       case 'artist':
-        dispatch(filterArtists(term));
+        dispatch(ACTIONS.filterArtists(term));
         break;
       case 'track':
-        dispatch(filterTracks(term));
+        dispatch(ACTIONS.filterTracks(term));
         break;
       default:
-        dispatch(filterTracks(term));
+        dispatch(ACTIONS.filterTracks(term));
         break;
     }
   }, [term, select, dispatch])
@@ -35,7 +35,7 @@ function SearchBar() {
 
   const getDataBySearch = ({ select, term }) => {
     if(term) {
-      dispatch(getDataOnSearch({ select, term }));
+      dispatch(ACTIONS.getDataOnSearch({ select, term }));
       /* setTerm(''); */
     }
   }

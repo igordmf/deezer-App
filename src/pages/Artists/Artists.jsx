@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { removeFromFavoritesArtists } from '../../redux/actions';
+import { ACTIONS } from '../../redux/actions';
 import ArtistsList from '../../components/molecules/ArtistsList';
-import favoriteBtnText from '../../helpers/favoriteBtnText';
-import { removeArtistFromLocalStorage } from '../../helpers/localStorageFunctions/removeFromLocalStorage';
+import { favoriteBtnText } from '../../helpers/favoriteBtnText';
+import { localStorageFunctions } from '../../helpers/localStorageFunctions';
 import { Container } from './styles';
 
 function Artists() {
@@ -13,9 +13,9 @@ function Artists() {
     <Container>
       <ArtistsList
         artists={ favoritesArtists }
-        favoriteFunction={ removeFromFavoritesArtists }
-        favoriteBtnText={ favoriteBtnText[1] }
-        localStorageFunction={ removeArtistFromLocalStorage }
+        favoriteFunction={ ACTIONS.removeFromFavoritesArtists }
+        favoriteBtnText={ favoriteBtnText.REMOVE_FROM_FAVORITES }
+        localStorageFunction={ localStorageFunctions.removeArtistFromLocalStorage }
       />
     </Container>
   )
