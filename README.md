@@ -4,13 +4,15 @@
 
 ## 📋 Requisitos
 
-### O teste consiste em criar um Webapp de listagem e pré-visualização de músicas do app Deezer.
+### O projeto consiste em criar um Webapp de listagem e pré-visualização de músicas do app Deezer.
 
 ✔️ Criar uma tela de listagem de músicas do momento usando a [API do Deezer](https://developers.deezer.com/api);
 
 ✔️ Ao clicar no play da música no card, um preview da música deve começar a tocar;
 
-✔️ Ao clicar em "Adicionar aos favoritos" a música deve ser adicionada aos favoritos;
+✔️ É possível fazer buscas por músicas, artistas, ou álbuns;
+
+✔️ Ao clicar em "Adicionar aos favoritos" a música, artista ou álbum deve ser adicionado aos favoritos;
 
 ## 🛠 Tecnologias
 
@@ -26,7 +28,7 @@
 
 - ### **Pré-requisitos**
 
-  - **Node.js**;
+  - **Node.js**
   - **Git**
   - Gerenciador de pacotes **npm** ou **yarn**
 
